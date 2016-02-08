@@ -5,6 +5,12 @@ snippet JF
 	:J P[${1}] ${2:100}% FINE 
 snippet JC
 	:J P[${1}] ${2:100}% CNT${3:100} 
+snippet JPR
+	:J PR[${1}]
+snippet JPRF
+	:J PR[${1}] ${2:100}% FINE
+snippet JPRC
+	:J PR[${1}] ${2:100}% CNT${3:100}
 snippet L
 	:L P[${1}] 
 snippet LF
@@ -13,6 +19,12 @@ snippet LC
 	:L P[${1}] ${2:2000}mm/sec CNT${3:100} 
 snippet LW
 	:L P[${1}] max_speed FINE Wjnt 
+snippet LPR
+	:L PR[${1}]
+snippet LPRF
+	:L PR[${1}] ${2:2000}mm/sec FINE
+snippet LPRC
+	:L PR[${1}] ${2:2000}mm/sec CNT${3:100}
 snippet A
 	:A P[${1}] 
 snippet AF
@@ -43,6 +55,10 @@ snippet AP
 	AP_LD${1:50} 
 snippet RT
 	RT_LD${1:50} 
+snippet APR
+	AP_LDR[${1}]
+snippet RTR
+	RT_LDR[${1}]
 # BRANCHING STATEMENTS
 snippet LB
 	:  LBL[${1}];
@@ -93,48 +109,27 @@ snippet !
 snippet PROG
 	/PROG  ${1:NAME}
 	/ATTR
-	DEFAULT_GROUP	= 1,*,*,*,*;
-	/APPL
-
-	AUTO_SINGULARITY_HEADER;
-	  ENABLE_SINGULARITY_AVOIDANCE   : TRUE;
+	DEFAULT_GROUP	= ${2:1},*,*,*,*;
 	/MN
-	:  !Initial Settings ;
-	:  UFRAME_NUM=${2};
-	:  UTOOL_NUM=${3};
-	
 	/POS
 	/END
 snippet MACRO
-	/PROG  ${1:NAME}	  Macro
+	/PROG  ${1:NAME}	Macro
 	/ATTR
-	DEFAULT_GROUP	= 1,*,*,*,*;
-	/APPL
-
-	AUTO_SINGULARITY_HEADER;
-	  ENABLE_SINGULARITY_AVOIDANCE   : TRUE;
+	DEFAULT_GROUP	= ${2:*},*,*,*,*;
 	/MN
-	:  !Initial Settings ;
-	:  UFRAME_NUM=${2};
-	:  UTOOL_NUM=${3};
-	
 	/POS
 	/END
 snippet COND
-	/PROG  ${1:NAME}	  Cond
+	/PROG  ${1:NAME}	Cond
 	/ATTR
 	DEFAULT_GROUP	= *,*,*,*,*;
-	/APPL
-
-	AUTO_SINGULARITY_HEADER;
-	  ENABLE_SINGULARITY_AVOIDANCE   : TRUE;
-	/MN
-	:  WHEN ${2},CALL ${3} ;	
+	 : WHEN ${2},CALL ${3} ;	
 	/POS
 	/END
 # WAIT COMMANDS
 snippet W
-	:  WAIT    ${1}(sec);
+	:  WAIT ${1}(sec);
 snippet WT
 	:  $WAITTMOUT=(${1});
 snippet WTL
